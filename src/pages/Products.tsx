@@ -1,29 +1,16 @@
-import { useState, useEffect } from "react";
-import Axios from "axios";
-import { Product } from "../types/interface";
+import { useContext } from "react";
 import ProductCard from "../components/ProductCard";
+import { ProductsContext } from "../context/productsContext";
 
 const Products: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-
-  const fetchProducts = async () => {
-    try {
-      const response = await Axios.get("https://fakestoreapi.com/products");
-      setProducts(response.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  const { products } = useContext(ProductsContext);
 
   return (
     <>
       <h1 className="text-xl">Products List</h1>
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-        {products.length > 0 &&
+        {products !== null &&
+          products &&
           products.map((product) => {
             return <ProductCard key={product.id} {...product} />;
           })}

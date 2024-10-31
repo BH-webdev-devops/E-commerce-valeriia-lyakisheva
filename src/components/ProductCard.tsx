@@ -1,5 +1,5 @@
-import { Product } from "../types/interface";
 import { Link } from "react-router-dom";
+import { Product } from "../types/interface";
 
 const ProductCard: React.FC<Product> = ({
   title,
@@ -16,7 +16,7 @@ const ProductCard: React.FC<Product> = ({
         </Link>
         <img src={image} alt="product image" className="h-60 w-60" />
         <p className="py-4">Description: {description}</p>
-        <p className="self-end">Price: {price}$</p>
+        <p className="align-bottom">Price: {price}$</p>
       </div>
     </>
   );
